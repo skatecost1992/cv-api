@@ -26,6 +26,8 @@
 
 <script>
 const API = "";
+const API_KEY = "app-cv";
+const API_VALUE = "mi-valor-secreto";
 const G = id => document.getElementById(id);
 const ce = (tag, attrs = {}, children = []) => {
     const el = document.createElement(tag);
@@ -65,9 +67,10 @@ const tabs = [
 let state = { personal: null, experiences: [], languages: [], certifications: [], programming: [], testing: [] };
 
 async function api(method, path, body) {
-    const opts = { method, headers: { "Content-Type": "application/json" } };
+    const opts = { method, headers: { "Content-Type": "application/json", "X-API-Key": API_KEY, "X-API-Value": API_VALUE } };
     if (body) opts.body = JSON.stringify(body);
     const r = await fetch(API + path, opts);
+    if (r.status === 401) { alert("Error de autenticaci\u00f3n API"); return null; }
     if (method === "DELETE") return null;
     return r.json();
 }

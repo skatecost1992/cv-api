@@ -1,0 +1,35 @@
+databases:
+  - name: cv-db
+    plan: free
+    databaseName: cvdb
+    user: cvuser
+
+services:
+  - type: web
+    name: cv-api
+    runtime: docker
+    plan: free
+    dockerfilePath: ./DockerFile
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_HOST
+        fromDatabase:
+          name: cv-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: cv-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: cv-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: cv-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: cv-db
+          property: password

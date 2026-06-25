@@ -1,5 +1,7 @@
 package com.cv.api.config;
 
+import com.cv.api.entity.ApiCredential;
+import com.cv.api.repository.ApiCredentialRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -10,19 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HexFormat;
-import java.util.Map;
-import java.util.stream.Collectors;
 
+/**
+ * Protege los endpoints /api/*.
+ * El cliente envía:
+ *   - X-API-Key:   el nombre de la credencial (ej. "app-cv")
+ *   - X-API-Value: el valor secreto cifrado con RSA-OAEP(SHA-256) en Base64
+ * El servidor descifra X-API-Value con su clave privada y lo compara, en tiempo
+ * constante, contra el valor en claro almacenado en la base de datos.
+ */
 @Component
 public class ApiKeyFilter extends OncePerRequestFilter {
 
-    private final Map<String, String> keyHashMap;
+    private final ApiCredentialRepository credentials;
+    private final RsaService rsaService;
 
-    public ApiKeyFilter(ApiKeyProperties properties) {
-        this.keyHashMap = properties.getKeys().stream()
-                .collect(Collectors.toMap(ApiKeyProperties.KeyEntry::getKey, ApiKeyProperties.KeyEntry::getHash));
+    public ApiKeyFilter(ApiCredentialRepository credentials, RsaService rsaService) {
+        this.credentials = credentials;
+        this.rsaService = rsaService;
     }
 
     @Override
@@ -30,9 +37,9 @@ public class ApiKeyFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String apiKey = request.getHeader("X-API-Key");
-        String apiValue = request.getHeader("X-API-Value");
+        String encryptedValue = request.getHeader("X-API-Value");
 
-        if (apiKey == null || apiValue == null || !isValid(apiKey, apiValue)) {
+        if (apiKey == null || encryptedValue == null || !isValid(apiKey, encryptedValue)) {
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             response.setContentType("application/json");
             response.getWriter().write("{\"error\":\"Unauthorized: invalid or missing API credentials\"}");
@@ -42,20 +49,17 @@ public class ApiKeyFilter extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 
-    private boolean isValid(String apiKey, String apiValue) {
-        String storedHash = keyHashMap.get(apiKey);
-        if (storedHash == null) return false;
-        String computedHash = sha256(apiValue);
-        return storedHash.equalsIgnoreCase(computedHash);
-    }
-
-    private String sha256(String value) {
+    private boolean isValid(String apiKey, String encryptedValue) {
+        ApiCredential credential = credentials.findByName(apiKey).orElse(null);
+        if (credential == null) return false;
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hash = md.digest(value.getBytes(StandardCharsets.UTF_8));
-            return HexFormat.of().formatHex(hash);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("SHA-256 not available", e);
+            String decrypted = rsaService.decrypt(encryptedValue);
+            return MessageDigest.isEqual(
+                    decrypted.getBytes(StandardCharsets.UTF_8),
+                    credential.getSecretValue().getBytes(StandardCharsets.UTF_8));
+        } catch (Exception e) {
+            // Cualquier fallo de descifrado (valor manipulado, padding inválido, etc.) => no autorizado
+            return false;
         }
     }
 }

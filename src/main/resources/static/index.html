@@ -28,7 +28,10 @@
 <script>
 const API = "";
 const API_KEY = "app-cv";
-const API_VALUE = "mi-valor-secreto";
+// Valor de la credencial CIFRADO con RSA-OAEP(SHA-256). El secreto en claro NO
+// está aquí: esto es un texto cifrado que solo el servidor puede descifrar con
+// su clave privada. (Ver endpoint /public-key para cifrar otros valores.)
+const API_VALUE = "Z/9M61Nw2ur16uV7mr3Ku0SHOBJWQVGvMQhjVJqS25stnX7tJk5IAKF0Zx1DGkEO6jnukKCfIu9kMD8TLN6ttbT4hCbBfQwxXhKxsVKXiRF4oI5MP1xOY34XCxJazfcYiYeFV1pp5x3t/fhlVPaCHw+m7xtctaYP7sYj8HXHiRn+MyFX85kgplcQEGclOnT9lQyezqDaFg5mmGAXzgMNB+jPnNZYuxAXTrA9zIRJ6cJvuL3JSzbcEslwkdUcFN0jxgAEsJ4McQlwfAPMKZFsf+IrkIkQcfIw1M9IqtKJQoP9O0Ysmpib8kOxLjfZCSkd2Rk0sbFT2Fa9Pq0sCUHZvQ==";
 const G = id => document.getElementById(id);
 const ce = (tag, attrs = {}, children = []) => {
     const el = document.createElement(tag);

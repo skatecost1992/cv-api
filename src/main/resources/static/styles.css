@@ -42,7 +42,7 @@ body { font-family: 'Inter', sans-serif; background: #eef1f7; color: #1e293b; li
 .timeline-company { font-size: 15px; font-weight: 600; color: #0f172a; }
 .timeline-role { font-size: 13px; color: #3b82f6; font-weight: 500; }
 .timeline-location { font-size: 12px; color: #64748b; }
-.timeline-desc { font-size: 13px; color: #475569; margin-top: 4px; }
+.timeline-desc { font-size: 13px; color: #475569; margin-top: 4px; text-align: justify; }
 .certs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .cert-card { padding: 14px; border-radius: 10px; border: 1px solid #e2e8f0; background: #f8fafc; transition: box-shadow .2s; }
 .cert-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }

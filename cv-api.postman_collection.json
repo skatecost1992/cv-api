@@ -172,6 +172,30 @@
             "body": { "mode": "raw", "raw": "{\n  \"name\": \"Inglés\",\n  \"level\": \"Intermedio\"\n}" },
             "url": { "raw": "{{baseUrl}}/api/languages", "host": ["{{baseUrl}}"], "path": ["api", "languages"] }
           }
+        },
+        {
+          "name": "PUT idioma (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Inglés\",\n  \"level\": \"Avanzado\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/languages/1", "host": ["{{baseUrl}}"], "path": ["api", "languages", "1"] }
+          }
+        },
+        {
+          "name": "DELETE idioma (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/languages/1", "host": ["{{baseUrl}}"], "path": ["api", "languages", "1"] }
+          }
         }
       ]
     },

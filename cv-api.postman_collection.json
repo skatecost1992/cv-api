@@ -442,6 +442,59 @@
       ]
     },
     {
+      "name": "Estudios Complementarios",
+      "item": [
+        {
+          "name": "GET estudios complementarios",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/complementary-studies", "host": ["{{baseUrl}}"], "path": ["api", "complementary-studies"] }
+          }
+        },
+        {
+          "name": "POST estudio complementario",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Scrum Fundamentals\",\n  \"institution\": \"Platzi\",\n  \"date\": \"2024-03-10\",\n  \"description\": \"Curso de fundamentos de metodologías ágiles\",\n  \"url\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/complementary-studies", "host": ["{{baseUrl}}"], "path": ["api", "complementary-studies"] }
+          }
+        },
+        {
+          "name": "PUT estudio complementario (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Scrum Master\",\n  \"institution\": \"Platzi\",\n  \"date\": \"2024-05-20\",\n  \"description\": \"Curso avanzado de Scrum\",\n  \"url\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/complementary-studies/1", "host": ["{{baseUrl}}"], "path": ["api", "complementary-studies", "1"] }
+          }
+        },
+        {
+          "name": "DELETE estudio complementario (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/complementary-studies/1", "host": ["{{baseUrl}}"], "path": ["api", "complementary-studies", "1"] }
+          }
+        }
+      ]
+    },
+    {
       "name": "Referencias Profesionales",
       "item": [
         {

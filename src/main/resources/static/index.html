@@ -68,11 +68,12 @@ const tabs = [
     { id: "programming", label: "Prog. Knowledge" },
     { id: "testing", label: "Testing Knowledge" },
     { id: "ai", label: "IA" },
+    { id: "complementary", label: "Estudios Compl." },
     { id: "profReferences", label: "Ref. Profesionales" },
     { id: "famReferences", label: "Ref. Familiares" },
 ];
 
-let state = { personal: null, educations: [], experiences: [], languages: [], certifications: [], programming: [], testing: [], aiknowledge: [], professionalreferences: [], familyreferences: [] };
+let state = { personal: null, educations: [], experiences: [], languages: [], certifications: [], programming: [], testing: [], aiknowledge: [], complementarystudies: [], professionalreferences: [], familyreferences: [] };
 
 async function api(method, path, body) {
     const opts = { method, headers: { "Content-Type": "application/json", "X-API-Key": API_KEY, "X-API-Value": API_VALUE } };
@@ -84,7 +85,7 @@ async function api(method, path, body) {
 }
 
 async function loadAll() {
-    const [personal, education, experiences, languages, certifications, programming, testing, aiknowledge, professionalreferences, familyreferences] = await Promise.all([
+    const [personal, education, experiences, languages, certifications, programming, testing, aiknowledge, complementarystudies, professionalreferences, familyreferences] = await Promise.all([
         api("GET", "/api/personal-info").catch(() => null),
         api("GET", "/api/educations"),
         api("GET", "/api/experiences"),
@@ -93,10 +94,11 @@ async function loadAll() {
         api("GET", "/api/programming-knowledge"),
         api("GET", "/api/testing-knowledge"),
         api("GET", "/api/ai-knowledge"),
+        api("GET", "/api/complementary-studies"),
         api("GET", "/api/professional-references"),
         api("GET", "/api/family-references"),
     ]);
-    state = { personal, educations: education || [], experiences: experiences || [], languages: languages || [], certifications: certifications || [], programming: programming || [], testing: testing || [], aiknowledge: aiknowledge || [], professionalreferences: professionalreferences || [], familyreferences: familyreferences || [] };
+    state = { personal, educations: education || [], experiences: experiences || [], languages: languages || [], certifications: certifications || [], programming: programming || [], testing: testing || [], aiknowledge: aiknowledge || [], complementarystudies: complementarystudies || [], professionalreferences: professionalreferences || [], familyreferences: familyreferences || [] };
     render();
     renderAdminLists();
 }
@@ -282,6 +284,21 @@ function render() {
         ]));
     }
 
+    if (state.complementarystudies.length) {
+        main.appendChild(ce("div", { className: "main-section" }, [
+            ce("h2", {}, ["Estudios Complementarios"]),
+            ce("div", { className: "certs-grid" }, state.complementarystudies.map(s =>
+                ce("div", { className: "cert-card" }, [
+                    ce("div", { className: "cert-name" }, [s.name]),
+                    s.institution ? ce("div", { className: "cert-issuer" }, [s.institution]) : null,
+                    s.date ? ce("div", { className: "cert-date" }, [new Date(s.date).toLocaleDateString("es-ES", { year:"numeric", month:"long" })]) : null,
+                    s.description ? ce("div", { className: "cert-desc" }, [s.description]) : null,
+                    s.url ? ce("a", { className: "cert-url", href: s.url, target: "_blank" }, ["Ver certificado →"]) : null,
+                ])
+            )),
+        ]));
+    }
+
     if (state.professionalreferences.length) {
         main.appendChild(ce("div", { className: "main-section" }, [
             ce("h2", {}, ["Referencias Profesionales"]),
@@ -339,6 +356,7 @@ function renderAdminLists() {
         programming: renderListForm("programming-knowledge", "Conocimiento", ["name","level"], { name: "Nombre", level: "Nivel" }),
         testing: renderListForm("testing-knowledge", "Conocimiento", ["name","level"], { name: "Nombre", level: "Nivel" }),
         ai: renderListForm("ai-knowledge", "IA", ["name","level"], { name: "Nombre", level: "Nivel" }),
+        complementary: renderListForm("complementary-studies", "Estudio complementario", ["name","institution","date","description","url"], { name: "Nombre", institution: "Institución", date: "Fecha", description: "Descripción", url: "URL" }),
         profReferences: renderListForm("professional-references", "Referencia profesional", ["name","profession","phone","email"], { name: "Nombre", profession: "Profesión", phone: "Teléfono", email: "Correo" }),
         famReferences: renderListForm("family-references", "Referencia familiar", ["name","relationship","profession","phone","email"], { name: "Nombre", relationship: "Parentesco", profession: "Profesión", phone: "Teléfono", email: "Correo" }),
     };

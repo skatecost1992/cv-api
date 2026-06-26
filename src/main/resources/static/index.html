@@ -183,9 +183,12 @@ function render() {
             const dots = levelToDots(l.level);
             sec.appendChild(ce("div", { className: "lang-row" }, [
                 ce("span", { className: "lang-name" }, [l.name]),
-                ce("div", { className: "lang-dots" },
-                    [1,2,3,4,5].map(i => ce("div", { className: "lang-dot" + (i <= dots ? " filled" : "") }))
-                ),
+                ce("div", { className: "lang-meta" }, [
+                    l.level ? ce("span", { className: "lang-level" }, [l.level]) : null,
+                    ce("div", { className: "lang-dots" },
+                        [1,2,3,4,5].map(i => ce("div", { className: "lang-dot" + (i <= dots ? " filled" : "") }))
+                    ),
+                ]),
             ]));
         });
         sidebar.appendChild(sec);

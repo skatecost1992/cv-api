@@ -24,6 +24,8 @@ body { font-family: 'Inter', sans-serif; background: #eef1f7; color: #1e293b; li
 .skill-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #3b82f6, #6366f1); animation: barFill 1s ease forwards; }
 .lang-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; font-size: 13px; }
 .lang-name { color: #e2e8f0; }
+.lang-meta { display: flex; align-items: center; gap: 10px; }
+.lang-level { color: #93c5fd; font-size: 12px; }
 .lang-dots { display: flex; gap: 4px; }
 .lang-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid #475569; }
 .lang-dot.filled { background: #3b82f6; border-color: #3b82f6; }

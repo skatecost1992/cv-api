@@ -308,6 +308,30 @@
             "body": { "mode": "raw", "raw": "{\n  \"name\": \"Java\",\n  \"level\": \"Avanzado\"\n}" },
             "url": { "raw": "{{baseUrl}}/api/programming-knowledge", "host": ["{{baseUrl}}"], "path": ["api", "programming-knowledge"] }
           }
+        },
+        {
+          "name": "PUT programming-knowledge (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Java\",\n  \"level\": \"Experto\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/programming-knowledge/1", "host": ["{{baseUrl}}"], "path": ["api", "programming-knowledge", "1"] }
+          }
+        },
+        {
+          "name": "DELETE programming-knowledge (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/programming-knowledge/1", "host": ["{{baseUrl}}"], "path": ["api", "programming-knowledge", "1"] }
+          }
         }
       ]
     },
@@ -336,6 +360,30 @@
             ],
             "body": { "mode": "raw", "raw": "{\n  \"name\": \"JUnit\",\n  \"level\": \"Avanzado\"\n}" },
             "url": { "raw": "{{baseUrl}}/api/testing-knowledge", "host": ["{{baseUrl}}"], "path": ["api", "testing-knowledge"] }
+          }
+        },
+        {
+          "name": "PUT testing-knowledge (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"JUnit\",\n  \"level\": \"Experto\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/testing-knowledge/1", "host": ["{{baseUrl}}"], "path": ["api", "testing-knowledge", "1"] }
+          }
+        },
+        {
+          "name": "DELETE testing-knowledge (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/testing-knowledge/1", "host": ["{{baseUrl}}"], "path": ["api", "testing-knowledge", "1"] }
           }
         }
       ]

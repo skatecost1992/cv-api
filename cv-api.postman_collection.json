@@ -1,0 +1,266 @@
+{
+  "info": {
+    "name": "CV API",
+    "description": "Colección para consumir la API de hoja de vida (cv-api). Configura las variables baseUrl, apiKey y apiValue en la pestaña Variables de la colección.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://cv-api-xxxx.onrender.com" },
+    { "key": "apiKey", "value": "app-cv" },
+    { "key": "apiValue", "value": "wIRE5U/rq+vInaTX5RYjEZQA9jLTn8p7hCZ7bpSV2ONUvw+vvn+tJSmI8Dg8l3ZpQK7Q1hkeULTfsqufDyQUbpn9Z/YErm2+VPM3/xO+H+22VpeTQr4LG30dpKnTdxnO+1jwWfpaAWuf6irUHVpbbeFUprfCO0apSOQ/3QaN+qJLLx+BzqQ14cBlJhHsNoFYu+bdd9sg2W/3gfiN3QDAZnKOVDpvuFHErju8XAUfptiGqpzOl+yOv3zvbADisSKeTXmzKlktKwouSwfZmpqmvWucRcNSb7lXJHsVrjfCvO14740j9r9gOVnj0BY8VPesZTqzNT+8PZkwvXfDsqSpHA==" }
+  ],
+  "item": [
+    {
+      "name": "Seguridad",
+      "item": [
+        {
+          "name": "GET clave pública (abierto)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/public-key", "host": ["{{baseUrl}}"], "path": ["public-key"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Info Personal",
+      "item": [
+        {
+          "name": "GET info personal",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/personal-info", "host": ["{{baseUrl}}"], "path": ["api", "personal-info"] }
+          }
+        },
+        {
+          "name": "PUT info personal (crear/actualizar)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Cristhian\",\n  \"title\": \"Desarrollador Full-Stack\",\n  \"email\": \"ing.cristhianher@gmail.com\",\n  \"phone\": \"+51 999999999\",\n  \"location\": \"Lima, Perú\",\n  \"summary\": \"Desarrollador con experiencia en Java, Spring Boot y tecnologías web.\",\n  \"linkedin\": \"linkedin.com/in/cristhian\",\n  \"github\": \"github.com/skatecost1992\",\n  \"website\": \"\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/personal-info", "host": ["{{baseUrl}}"], "path": ["api", "personal-info"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Formación Profesional",
+      "item": [
+        {
+          "name": "GET formación",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/educations", "host": ["{{baseUrl}}"], "path": ["api", "educations"] }
+          }
+        },
+        {
+          "name": "POST formación",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"institution\": \"Universidad Nacional de Ingeniería\",\n  \"degree\": \"Ingeniería de Sistemas\",\n  \"description\": \"Especialización en desarrollo de software.\",\n  \"startDate\": \"2016-03-01\",\n  \"endDate\": \"2021-12-15\",\n  \"location\": \"Lima, Perú\",\n  \"orderIndex\": 1\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/educations", "host": ["{{baseUrl}}"], "path": ["api", "educations"] }
+          }
+        },
+        {
+          "name": "PUT formación (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"institution\": \"Universidad Nacional de Ingeniería\",\n  \"degree\": \"Maestría en Ingeniería de Software\",\n  \"startDate\": \"2022-03-01\",\n  \"endDate\": \"\",\n  \"location\": \"Lima, Perú\",\n  \"orderIndex\": 1\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/educations/1", "host": ["{{baseUrl}}"], "path": ["api", "educations", "1"] }
+          }
+        },
+        {
+          "name": "DELETE formación (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/educations/1", "host": ["{{baseUrl}}"], "path": ["api", "educations", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Experiencia",
+      "item": [
+        {
+          "name": "GET experiencias",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/experiences", "host": ["{{baseUrl}}"], "path": ["api", "experiences"] }
+          }
+        },
+        {
+          "name": "POST experiencia",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"Tech Corp\",\n  \"role\": \"Full-Stack Developer\",\n  \"description\": \"Desarrollo de aplicaciones web con Spring Boot y React.\",\n  \"startDate\": \"2022-01-01\",\n  \"endDate\": \"\",\n  \"location\": \"Lima\",\n  \"orderIndex\": 1\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/experiences", "host": ["{{baseUrl}}"], "path": ["api", "experiences"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Idiomas",
+      "item": [
+        {
+          "name": "GET idiomas",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/languages", "host": ["{{baseUrl}}"], "path": ["api", "languages"] }
+          }
+        },
+        {
+          "name": "POST idioma",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Inglés\",\n  \"level\": \"Intermedio\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/languages", "host": ["{{baseUrl}}"], "path": ["api", "languages"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Certificaciones",
+      "item": [
+        {
+          "name": "GET certificaciones",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/certifications", "host": ["{{baseUrl}}"], "path": ["api", "certifications"] }
+          }
+        },
+        {
+          "name": "POST certificación",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"AWS Certified Cloud Practitioner\",\n  \"issuer\": \"Amazon Web Services\",\n  \"date\": \"2024-06-01\",\n  \"url\": \"\",\n  \"description\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/certifications", "host": ["{{baseUrl}}"], "path": ["api", "certifications"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Conocimientos - Programación",
+      "item": [
+        {
+          "name": "GET programming-knowledge",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/programming-knowledge", "host": ["{{baseUrl}}"], "path": ["api", "programming-knowledge"] }
+          }
+        },
+        {
+          "name": "POST programming-knowledge",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Java\",\n  \"level\": \"Avanzado\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/programming-knowledge", "host": ["{{baseUrl}}"], "path": ["api", "programming-knowledge"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Conocimientos - Testing",
+      "item": [
+        {
+          "name": "GET testing-knowledge",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/testing-knowledge", "host": ["{{baseUrl}}"], "path": ["api", "testing-knowledge"] }
+          }
+        },
+        {
+          "name": "POST testing-knowledge",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"JUnit\",\n  \"level\": \"Avanzado\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/testing-knowledge", "host": ["{{baseUrl}}"], "path": ["api", "testing-knowledge"] }
+          }
+        }
+      ]
+    }
+  ]
+}

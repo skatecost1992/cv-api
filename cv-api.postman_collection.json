@@ -440,6 +440,112 @@
           }
         }
       ]
+    },
+    {
+      "name": "Referencias Profesionales",
+      "item": [
+        {
+          "name": "GET referencias profesionales",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/professional-references", "host": ["{{baseUrl}}"], "path": ["api", "professional-references"] }
+          }
+        },
+        {
+          "name": "POST referencia profesional",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Juan Pérez\",\n  \"profession\": \"Gerente de Tecnología\",\n  \"phone\": \"+57 3001234567\",\n  \"email\": \"juan.perez@empresa.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/professional-references", "host": ["{{baseUrl}}"], "path": ["api", "professional-references"] }
+          }
+        },
+        {
+          "name": "PUT referencia profesional (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Juan Pérez\",\n  \"profession\": \"Director de Tecnología\",\n  \"phone\": \"+57 3001234567\",\n  \"email\": \"juan.perez@empresa.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/professional-references/1", "host": ["{{baseUrl}}"], "path": ["api", "professional-references", "1"] }
+          }
+        },
+        {
+          "name": "DELETE referencia profesional (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/professional-references/1", "host": ["{{baseUrl}}"], "path": ["api", "professional-references", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Referencias Familiares",
+      "item": [
+        {
+          "name": "GET referencias familiares",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/family-references", "host": ["{{baseUrl}}"], "path": ["api", "family-references"] }
+          }
+        },
+        {
+          "name": "POST referencia familiar",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"María Gómez\",\n  \"relationship\": \"Madre\",\n  \"profession\": \"Docente\",\n  \"phone\": \"+57 3007654321\",\n  \"email\": \"maria.gomez@correo.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/family-references", "host": ["{{baseUrl}}"], "path": ["api", "family-references"] }
+          }
+        },
+        {
+          "name": "PUT referencia familiar (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"María Gómez\",\n  \"relationship\": \"Madre\",\n  \"profession\": \"Docente jubilada\",\n  \"phone\": \"+57 3007654321\",\n  \"email\": \"maria.gomez@correo.com\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/family-references/1", "host": ["{{baseUrl}}"], "path": ["api", "family-references", "1"] }
+          }
+        },
+        {
+          "name": "DELETE referencia familiar (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/family-references/1", "host": ["{{baseUrl}}"], "path": ["api", "family-references", "1"] }
+          }
+        }
+      ]
     }
   ]
 }

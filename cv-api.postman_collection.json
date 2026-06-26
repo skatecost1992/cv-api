@@ -339,6 +339,59 @@
           }
         }
       ]
+    },
+    {
+      "name": "IA",
+      "item": [
+        {
+          "name": "GET ai-knowledge",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/ai-knowledge", "host": ["{{baseUrl}}"], "path": ["api", "ai-knowledge"] }
+          }
+        },
+        {
+          "name": "POST ai-knowledge",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"ChatGPT\",\n  \"level\": \"Avanzado\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/ai-knowledge", "host": ["{{baseUrl}}"], "path": ["api", "ai-knowledge"] }
+          }
+        },
+        {
+          "name": "PUT ai-knowledge (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"GitHub Copilot\",\n  \"level\": \"Intermedio\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/ai-knowledge/1", "host": ["{{baseUrl}}"], "path": ["api", "ai-knowledge", "1"] }
+          }
+        },
+        {
+          "name": "DELETE ai-knowledge (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/ai-knowledge/1", "host": ["{{baseUrl}}"], "path": ["api", "ai-knowledge", "1"] }
+          }
+        }
+      ]
     }
   ]
 }

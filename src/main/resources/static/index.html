@@ -67,9 +67,10 @@ const tabs = [
     { id: "certifications", label: "Certificaciones" },
     { id: "programming", label: "Prog. Knowledge" },
     { id: "testing", label: "Testing Knowledge" },
+    { id: "ai", label: "IA" },
 ];
 
-let state = { personal: null, educations: [], experiences: [], languages: [], certifications: [], programming: [], testing: [] };
+let state = { personal: null, educations: [], experiences: [], languages: [], certifications: [], programming: [], testing: [], aiknowledge: [] };
 
 async function api(method, path, body) {
     const opts = { method, headers: { "Content-Type": "application/json", "X-API-Key": API_KEY, "X-API-Value": API_VALUE } };
@@ -81,7 +82,7 @@ async function api(method, path, body) {
 }
 
 async function loadAll() {
-    const [personal, education, experiences, languages, certifications, programming, testing] = await Promise.all([
+    const [personal, education, experiences, languages, certifications, programming, testing, aiknowledge] = await Promise.all([
         api("GET", "/api/personal-info").catch(() => null),
         api("GET", "/api/educations"),
         api("GET", "/api/experiences"),
@@ -89,8 +90,9 @@ async function loadAll() {
         api("GET", "/api/certifications"),
         api("GET", "/api/programming-knowledge"),
         api("GET", "/api/testing-knowledge"),
+        api("GET", "/api/ai-knowledge"),
     ]);
-    state = { personal, educations: education || [], experiences: experiences || [], languages: languages || [], certifications: certifications || [], programming: programming || [], testing: testing || [] };
+    state = { personal, educations: education || [], experiences: experiences || [], languages: languages || [], certifications: certifications || [], programming: programming || [], testing: testing || [], aiknowledge: aiknowledge || [] };
     render();
     renderAdminLists();
 }
@@ -136,7 +138,7 @@ function render() {
     });
     sidebar.appendChild(contact);
 
-    if (state.programming.length || state.testing.length || state.languages.length) {
+    if (state.programming.length || state.testing.length || state.aiknowledge.length || state.languages.length) {
         sidebar.appendChild(ce("div", { className: "sidebar-divider" }));
     }
 
@@ -162,6 +164,24 @@ function render() {
         const sec = ce("div");
         sec.appendChild(ce("h2", {}, ["Pruebas"]));
         state.testing.forEach(s => {
+            const pct = levelToPercent(s.level);
+            sec.appendChild(ce("div", { className: "skill-bar-group" }, [
+                ce("div", { className: "skill-bar-header" }, [
+                    ce("span", { className: "skill-name" }, [s.name]),
+                    ce("span", { className: "skill-lvl" }, [s.level]),
+                ]),
+                ce("div", { className: "skill-bar-track" }, [
+                    ce("div", { className: "skill-bar-fill", style: "width:" + pct + "%" }),
+                ]),
+            ]));
+        });
+        sidebar.appendChild(sec);
+    }
+
+    if (state.aiknowledge.length) {
+        const sec = ce("div");
+        sec.appendChild(ce("h2", {}, ["IA"]));
+        state.aiknowledge.forEach(s => {
             const pct = levelToPercent(s.level);
             sec.appendChild(ce("div", { className: "skill-bar-group" }, [
                 ce("div", { className: "skill-bar-header" }, [
@@ -285,6 +305,7 @@ function renderAdminLists() {
         certifications: renderListForm("certifications", "Certificaci\u00f3n", ["name","issuer","date","url","description"], { name: "Nombre", issuer: "Emisor", date: "Fecha", url: "URL", description: "Descripci\u00f3n" }),
         programming: renderListForm("programming-knowledge", "Conocimiento", ["name","level"], { name: "Nombre", level: "Nivel" }),
         testing: renderListForm("testing-knowledge", "Conocimiento", ["name","level"], { name: "Nombre", level: "Nivel" }),
+        ai: renderListForm("ai-knowledge", "IA", ["name","level"], { name: "Nombre", level: "Nivel" }),
     };
 
     tabs.forEach(tab => {

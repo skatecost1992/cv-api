@@ -143,6 +143,33 @@
             },
             "url": { "raw": "{{baseUrl}}/api/experiences", "host": ["{{baseUrl}}"], "path": ["api", "experiences"] }
           }
+        },
+        {
+          "name": "PUT experiencia (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company\": \"Tech Corp\",\n  \"role\": \"Senior Full-Stack Developer\",\n  \"description\": \"Liderazgo técnico y desarrollo con Spring Boot y React.\",\n  \"startDate\": \"2022-01-01\",\n  \"endDate\": \"\",\n  \"location\": \"Lima\",\n  \"orderIndex\": 1\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/experiences/1", "host": ["{{baseUrl}}"], "path": ["api", "experiences", "1"] }
+          }
+        },
+        {
+          "name": "DELETE experiencia (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/experiences/1", "host": ["{{baseUrl}}"], "path": ["api", "experiences", "1"] }
+          }
         }
       ]
     },
@@ -224,6 +251,33 @@
             ],
             "body": { "mode": "raw", "raw": "{\n  \"name\": \"AWS Certified Cloud Practitioner\",\n  \"issuer\": \"Amazon Web Services\",\n  \"date\": \"2024-06-01\",\n  \"url\": \"\",\n  \"description\": \"\"\n}" },
             "url": { "raw": "{{baseUrl}}/api/certifications", "host": ["{{baseUrl}}"], "path": ["api", "certifications"] }
+          }
+        },
+        {
+          "name": "PUT certificación (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"AWS Certified Solutions Architect\",\n  \"issuer\": \"Amazon Web Services\",\n  \"date\": \"2024-06-01\",\n  \"url\": \"\",\n  \"description\": \"\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/api/certifications/1", "host": ["{{baseUrl}}"], "path": ["api", "certifications", "1"] }
+          }
+        },
+        {
+          "name": "DELETE certificación (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/certifications/1", "host": ["{{baseUrl}}"], "path": ["api", "certifications", "1"] }
           }
         }
       ]

@@ -50,6 +50,16 @@ CREATE TABLE testing_knowledge (
     level VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE portfolio (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    technologies VARCHAR(255),
+    url VARCHAR(255),
+    repository_url VARCHAR(255),
+    date DATE
+);
+
 INSERT INTO personal_info (name, title, email, phone, location, summary, linkedin, github)
 VALUES ('Cristhian', 'Desarrollador Full-Stack', 'cristhian@email.com', '123456789', 'Lima, Perú',
         'Desarrollador con experiencia en Java, Spring Boot y tecnologías web.',
@@ -66,3 +76,8 @@ INSERT INTO certification (name, issuer, date) VALUES ('AWS Certified', 'Amazon'
 INSERT INTO programming_knowledge (name, level) VALUES ('Java', 'Avanzado'), ('Spring Boot', 'Avanzado');
 
 INSERT INTO testing_knowledge (name, level) VALUES ('Selenium', 'Intermedio'), ('JUnit', 'Avanzado');
+
+INSERT INTO portfolio (name, description, technologies, url, repository_url, date)
+VALUES ('Aprende Idiomas', 'Aplicación web para practicar idiomas con ejercicios interactivos',
+        'React, Spring Boot, MongoDB', 'https://aprende-idiomas.vercel.app',
+        'https://github.com/cristhian/aprende-idiomas', '2024-03-10');

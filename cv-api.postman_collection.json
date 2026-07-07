@@ -599,6 +599,59 @@
           }
         }
       ]
+    },
+    {
+      "name": "Portafolio",
+      "item": [
+        {
+          "name": "GET portfolio",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/portfolio", "host": ["{{baseUrl}}"], "path": ["api", "portfolio"] }
+          }
+        },
+        {
+          "name": "POST portfolio",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Aprende Idiomas\",\n  \"description\": \"Aplicación web para practicar idiomas con ejercicios interactivos\",\n  \"technologies\": \"React, Spring Boot, MongoDB\",\n  \"url\": \"https://aprende-idiomas.vercel.app\",\n  \"repositoryUrl\": \"https://github.com/cristhian/aprende-idiomas\",\n  \"date\": \"2024-03-10\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/portfolio", "host": ["{{baseUrl}}"], "path": ["api", "portfolio"] }
+          }
+        },
+        {
+          "name": "PUT portfolio (actualizar por id)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Aprende Idiomas\",\n  \"description\": \"Aplicación web para practicar idiomas con ejercicios interactivos y seguimiento de progreso\",\n  \"technologies\": \"React, Spring Boot, MongoDB\",\n  \"url\": \"https://aprende-idiomas.vercel.app\",\n  \"repositoryUrl\": \"https://github.com/cristhian/aprende-idiomas\",\n  \"date\": \"2024-03-10\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/portfolio/1", "host": ["{{baseUrl}}"], "path": ["api", "portfolio", "1"] }
+          }
+        },
+        {
+          "name": "DELETE portfolio (por id)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "X-API-Key", "value": "{{apiKey}}" },
+              { "key": "X-API-Value", "value": "{{apiValue}}" }
+            ],
+            "url": { "raw": "{{baseUrl}}/api/portfolio/1", "host": ["{{baseUrl}}"], "path": ["api", "portfolio", "1"] }
+          }
+        }
+      ]
     }
   ]
 }
